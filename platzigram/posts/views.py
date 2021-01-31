@@ -1,7 +1,6 @@
 """Posts views"""
 
 from django.shortcuts import render
-from django.http import HttpResponse
 from datetime import datetime
 
 # Create your views here.
@@ -22,13 +21,5 @@ posts = [
 ]
 
 def list_posts(request):
-    """Retrn a list of posts"""
-    content = []
-    for post in posts:
-        content.append("""
-        <p><strong>{name}</strong></p>
-        <p><small>{user} -<i>{timestamp}</i> </small></p>
-        <figure><img src="{picture}"/></figure>
-        """.format(**post))
-    
-    return HttpResponse('<br>'.join(content))
+    """Retrn a list of posts"""    
+    return render(request, 'feed.html', {'posts':posts})
